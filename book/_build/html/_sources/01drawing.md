@@ -177,13 +177,12 @@ Childrens board books often have colorful, simple covers. See the covers for
 
 You can use [simplegraphics.py](src/simplegraphics.py) as a starting point. Download it, and copy it into the directory where you are editing your Python files, or just copy-paste the code into a new Python file in your editor. The picture on the right shows some example shapes that `simplegraphics.py` can draw. 
 
-Write a Python program that uses function calls to `circle`, `rectangle`, `triangle`, and `ellipse` to draw a picture. You can create your own artwork from scratch, or use one of the book covers for inspiration.
+Read the contents of the `draw` function and look at the function headers for the functions `rectangle`, `ellipse`, `triangle` and `line`. Experiment to see how the parameters work. 
+
+Now edit the `draw` function to draw a picture, using function calls to `circle`, `rectangle`, `triangle`, and `ellipse`. You can create your own artwork from scratch, or use one of the book covers for inspiration.
 
 Some other ideas might be: 
 
 1) Light rays passing through a prism
 2) A snowman in a cozy scene with evergreen trees
 3) A child holding a bunch of balloons
-
-
-
