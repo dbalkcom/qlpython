@@ -151,7 +151,7 @@ exec(open("src/circles_mpl.py").read())
 ## Exercise: bullseye
 
 ```{image} img/bullseye.png
-:alt: Bulleye output
+:alt: Bullseye output
 :width: 150px
 :align: right
 ```
@@ -161,3 +161,29 @@ exec(open("src/circles_mpl.py").read())
 Copy the complete code for drawing two circles above into a new Python file. Edit the body of the `draw` function to draw an archery bullseye like the one on the right.
 
 *Hint:* My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first. 
+
+## Project: book cover
+
+```{image} img/simple_shapes.png
+:alt: Simple shapes
+:width: 150px
+:align: right
+```
+
+**Learning objective.** Use a variety of drawing commands to draw an interesting picture.
+
+Childrens board books often have colorful, simple covers. See the covers for
+[Goodnight Moon](https://upload.wikimedia.org/wikipedia/en/5/51/Goodnightmoon.jpg) and [The Very Hungry Caterpillar](https://upload.wikimedia.org/wikipedia/en/b/b5/HungryCaterpillar.JPG).
+
+You can use [simplegraphics.py](src/simplegraphics.py) as a starting point. Download it, and copy it into the directory where you are editing your Python files, or just copy-paste the code into a new Python file in your editor. The picture on the right shows some example shapes that `simplegraphics.py` can draw. 
+
+Write a Python program that uses function calls to `circle`, `rectangle`, `triangle`, and `ellipse` to draw a picture. You can create your own artwork from scratch, or use one of the book covers for inspiration.
+
+Some other ideas might be: 
+
+1) Light rays passing through a prism
+2) A snowman in a cozy scene with evergreen trees
+3) A child holding a bunch of balloons
+
+
+
