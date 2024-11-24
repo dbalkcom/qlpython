@@ -1,13 +1,12 @@
 import pygame
 from pygame import Color
 
-def init():
+def init(width=400,height=400):
       
     # Initialize Pygame
     pygame.init()
 
     # Set dimensions and create a screen
-    width, height = 400, 400
     screen = pygame.display.set_mode((width, height))
 
     return screen
@@ -52,8 +51,8 @@ def ellipse(color, x, y, width, height):
 def triangle(color, x1, y1, x2, y2, x3, y3):
     pygame.draw.polygon(gamescreen, color, [(x1, y1), (x2, y2), (x3, y3)])
 
-
-gamescreen = init()
+# Create a window of size 400 x 400
+gamescreen = init(400, 400)
 
 def draw():
     # you can put all your drawing code here
