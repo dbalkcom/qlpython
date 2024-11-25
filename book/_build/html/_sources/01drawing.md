@@ -22,7 +22,7 @@ In this lesson you will write code to print things on the screen and draw pretty
 * writing your own functions;
 * using functions from libraries someone else wrote.
 
-Let's get started. A computer program is made up of instructions that a computer follows. Here is a simple program with two lines:
+Let's get started. A computer program is made up of instructions that a computer follows. Here is a simple program:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -49,7 +49,7 @@ Each parameter has a type. The parameter `42` is an *integer*, or whole number. 
 
 The parameter `"Hello"` is a *string*, or sequence of letters and numbers. Notice that the quotes around `"Hello"` aren't printed. They just tell Python that `"Hello"` is a string. We can't multiply strings, but we might be able to do other things with them.  
 
-## Excercise: Inigo Montoya
+## Exercise: Inigo Montoya
 
 **Learning objective:** Run and edit Python code.
 
