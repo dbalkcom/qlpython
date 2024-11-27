@@ -69,6 +69,55 @@ print("Montoya")
 
 Now change the program to print out your name instead of Inigo Montoya's. Run it again to test it.
 
+## Drawing with Pygame
+
+Pygame is a library, or *module*, of Python functions that can be used to draw things on the screen.
+
+Here is a little piece of code to draw two circles. To make it run, you'll need to download two files and put them together in the same directory: [circles.py](src/circles.py) and [simplgraphics.py](src/simplegraphics.py). Then run `circles.py`.  
+
+```{literalinclude} src/circles.py
+```
+
+First let's look at the two function calls to the function named `circle`. The first one, `circle(Color('blue'), 125, 100, 50)` draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.
+
+The `circle` function call needs four parameters. How do I know? I wrote the `circle` function myself. The first parameter, `Color('blue')` is a little bit magical; we'll look at it later. The next three paramters, `125`, `100`, and `50` are integers, or whole numbers.
+
+
+<!--
+```{code-cell}
+:tags: [remove-input]
+exec(open("src/circles_mpl.py").read())
+```
+-->
+
+## Using external functions: from...import
+
+The `print` function we used earlier is built in to Python. The `circle` function is not: I wrote it myself, in the `simplegraphics.py` file. In order to use a function from a different file, you can use the `from X import Y` command, where `X` is the name of the file and `Y` is the name of the function. Like this:  
+
+~~~{code-block}
+from pygame import Color
+from simplegraphics import init_graphics, circle, draw_and_wait_for_exit
+~~~ 
+
+This code imports `Color` from the `pygame` module, and imports some other functions from the `simplegraphics.py` file. We leave the `.py` extension off when we use `from X import Y` command.
+
+The `init_graphics` function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open. 
+
+The drawing function `circle` doesn't really draw to the window; `circle` draws to something Pygame calls a screen. So the function `draw_and_wait_for_exit` copies the picture on the screen into the window, and waits for the user to click the button that closes the window.
+
+## Exercise: bullseye
+
+```{image} img/bullseye.png
+:alt: Bullseye output
+:width: 150px
+:align: right
+```
+
+**Learning objective.** Use `circle()` function calls to make a drawing.
+
+Copy the complete code for drawing two circles above into a new Python file. Edit the code to draw an archery bullseye like the one on the right.
+
+*Hint:* My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first. 
 
 ## Writing your own functions
 
@@ -121,48 +170,9 @@ why_goodbye()
 say_hello()
 ```
 
-## Drawing with Pygame
+## Exercise: reading code
 
-Here is a little piece of code to draw two circles. The code won't work by itself yet, since Python doesn't have a built-in function to draw circles:
-
-```{code-block} python3
-circle(Color('blue'), 125, 100, 50)
-circle(Color('green'), 275, 100, 50)
-```
-
-There are two function calls to the function named circle. The first one, `circle(Color('blue'), 125, 100, 50)` draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.
-
-The `circle` function must have four parameters. How do I know? I wrote the `circle` function myself, and we'll see it in the next section. The first parameter, `Color('blue')` is a little bit magical; we'll look at it later. The next three paramters, `125`, `100`, and `50` are integers, or whole numbers.
-
-## Complete code for drawing circles
-
-Let's make the circle drawing code actually work. You won't understand all of the longer code below. That's ok. For now it is enough to know that the *pygame* library has functions to do things like open up a window on the screen and draw a circle in it, and this code sets pygame up to do that. Do look at the contents of the function `draw`, where the real work happens.
-
-```{literalinclude} src/circles_pyg.py
-```
-
-<!--
-```{code-cell}
-:tags: [remove-input]
-exec(open("src/circles_mpl.py").read())
-```
--->
-
-## Exercise: bullseye
-
-```{image} img/bullseye.png
-:alt: Bullseye output
-:width: 150px
-:align: right
-```
-
-**Learning objective.** Use `circle()` function calls to make a drawing.
-
-Copy the complete code for drawing two circles above into a new Python file. Edit the body of the `draw` function to draw an archery bullseye like the one on the right.
-
-*Hint:* My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first. 
-
-## Project: book cover
+**Learning objective.** Read through some code to figure out how to use functions from that code.
 
 ```{image} img/simple_shapes.png
 :alt: Simple shapes
@@ -170,19 +180,29 @@ Copy the complete code for drawing two circles above into a new Python file. Edi
 :align: right
 ```
 
+The picture on the right shows some example shapes that `simplegraphics.py` can draw. Here is the code that drew the shapes:
+
+```{literalinclude} src/simplegraphics_examples.py
+```
+
+Open up `simplegraphics.py` and read the body of the `test_draw` function and look at the function headers for the functions `rectangle`, `ellipse`, `triangle` and `line`. Try to figure out what you might need to type to use these functions. Since this is a reading exercise, you don't have to type anything.
+
+## Project: book cover
+
 **Learning objective.** Use a variety of drawing commands to draw an interesting picture.
 
 Childrens board books often have colorful, simple covers. See the covers for
 [Goodnight Moon](https://upload.wikimedia.org/wikipedia/en/5/51/Goodnightmoon.jpg) and [The Very Hungry Caterpillar](https://upload.wikimedia.org/wikipedia/en/b/b5/HungryCaterpillar.JPG).
 
-You can use [simplegraphics.py](src/simplegraphics.py) as a starting point. Download it, and copy it into the directory where you are editing your Python files, or just copy-paste the code into a new Python file in your editor. The picture on the right shows some example shapes that `simplegraphics.py` can draw. 
+Create a new file with the name `bookcover.py` in the same directory as `simplegraphics.py`. Your job is to write complete code in `bookcover.py` to draw a picture, using function calls to `circle`, `rectangle`, `triangle`, and `ellipse`. You can create your own artwork from scratch, or use one of the book covers for inspiration.
 
-Read the contents of the `draw` function and look at the function headers for the functions `rectangle`, `ellipse`, `triangle` and `line`. Experiment to see how the parameters work. 
+Some other ideas are: light rays passing through a prism; a snowman in a cozy scene with evergreen trees; a child holding a bunch of balloons.
 
-Now edit the `draw` function to draw a picture, using function calls to `circle`, `rectangle`, `triangle`, and `ellipse`. You can create your own artwork from scratch, or use one of the book covers for inspiration.
+**Hints:** Simplify the problem. Set a simple objective, like drawing a single circle on the screen.
 
-Some other ideas might be: 
+1) Start with the imports. You'll need functions like `init_graphics` and `draw_and_wait_for_exit`, as well as at least one of the shapes, like `circle`, so import those things. 
 
-1) Light rays passing through a prism
-2) A snowman in a cozy scene with evergreen trees
-3) A child holding a bunch of balloons
+2) Then use `init_graphics`, a call to `circle`, and `draw_and_wait_for_exit()`. Run the code. If it works, add more drawing commands, importing the different types of shapes at the top of the code as needed.
+
+3) Run the code frequently. If at any point, the code doesn't run, compare it carefully to the `circles.py` code we looked at earlier.
+ 

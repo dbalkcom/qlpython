@@ -1,41 +1,26 @@
+# simplegraphics.py, by djb
+
 import pygame
 from pygame import Color
+import sys
 
-def init(width=400,height=400):
-      
-    # Initialize Pygame
-    pygame.init()
+gamescreen = None
 
-    # Set dimensions and create a screen
-    screen = pygame.display.set_mode((width, height))
-
-    return screen
+def init_graphics(width, height):
+    global gamescreen
+    gamescreen = pygame.display.set_mode((width, height))
+    gamescreen.fill(Color("white"))
 
 
-def game_loop():
-   
-    # Set the background color
-    background_color = (255, 255, 255)  # white
-    
-    # Main loop
-    running = True
-    while running:
-        for event in pygame.event.get():
+def draw_and_wait_for_exit():
+    pygame.display.flip()
+    while True:
+        for event in pygame.event.get(): 
             if event.type == pygame.QUIT:
-                running = False
+                pygame.quit()
+                sys.exit()
 
-        # Fill the background
-        gamescreen.fill(background_color)
-
-        # Draw circles
-        draw()
-
-        # Update the display
-        pygame.display.flip()
-
-    # Quit Pygame
-    pygame.quit()
-
+  
 def circle(color, x, y, radius):
      pygame.draw.circle(gamescreen, color, (x, y), radius)  
 
@@ -51,18 +36,20 @@ def ellipse(color, x, y, width, height):
 def triangle(color, x1, y1, x2, y2, x3, y3):
     pygame.draw.polygon(gamescreen, color, [(x1, y1), (x2, y2), (x3, y3)])
 
-# Create a window of size 400 x 400
-gamescreen = init(400, 400)
 
-def draw():
-    # you can put all your drawing code here
+def test_draw():
+    # tests the drawing code
 
-    circle(pygame.Color("red"), 100, 100, 50)                 # Circle
-    line(pygame.Color("green"), 50, 300, 350, 270, 5)         # Line
-    rectangle(pygame.Color("blue"), 150, 50, 100, 50)         # Rectangle
-    ellipse(pygame.Color("yellow"), 250, 150, 100, 50)        # Ellipse
-    triangle(pygame.Color("purple"), 50, 350, 200, 200, 350, 350)  # Triangle
+    circle(Color("red"), 100, 100, 50)                 # Circle
+    line(Color("green"), 50, 300, 350, 270, 5)         # Line
+    rectangle(Color("blue"), 150, 50, 100, 50)         # Rectangle
+    ellipse(Color("yellow"), 250, 150, 100, 50)        # Ellipse
+    triangle(Color("purple"), 50, 350, 200, 200, 350, 350)  # Triangle
 
+gamescreen = None
  
 if __name__ == "__main__":
-    game_loop()
+
+    init_graphics(400, 400)
+    test_draw()
+    draw_and_wait_for_exit()
