@@ -43,7 +43,7 @@ The word `print` is a Python command, called a *function call*. All function cal
 
 ## Parameters
 
-Sometimes there will be values inside the parentheses, like `42` or `"Hello"`. This data gives the function call additional information it needs to do its work. We call the data inside the parentheses the *parameters* to the function call. So `print(42)` has one parameter, `42`.
+Sometimes there will be values inside the parentheses, like `42` or `"Hello"`. This data gives the function call additional information it needs to do its work. We call the values inside the parentheses the *parameters* to the function call. So `print(42)` has one parameter, `42`.
 
 Each parameter has a type. The parameter `42` is an *integer*, or whole number. We can do things like multiply integers, although we won't do it yet.
 
@@ -53,7 +53,7 @@ The parameter `"Hello"` is a *string*, or sequence of letters and numbers. Notic
 
 **Learning objective:** Run and edit Python code.
 
-Copy the next program into your Python editor. PyCharm and Visual Studio Code (vscode) are popular choices. Run the code in the editor to see the output.
+Copy the next program into your Python editor. Run the code in the editor to see the output.
 
 ```{code-cell}
 :tags: [hide-output]
@@ -67,7 +67,7 @@ print("Inigo")
 print("Montoya")
 ```
 
-Now change the program to print out your name instead of Inigo Montoya's. Run it again to test it.
+Now use your editor to change the program to print out your name instead of Inigo Montoya's. Run it again to test it.
 
 ## Drawing with Pygame
 
