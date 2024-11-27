@@ -73,7 +73,7 @@ Now use your editor to change the program to print out your name instead of Inig
 
 Pygame is a library, or *module*, of Python functions that can be used to draw things on the screen.
 
-Here is a little piece of code to draw two circles. To make it run, you'll need to download two files and put them together in the same directory: [circles.py](src/circles.py) and [simplgraphics.py](src/simplegraphics.py). Then run `circles.py`.  
+Here is a little piece of code to draw two circles. To make it run, you'll need to download two files and put them together in the same directory: [circles.py](src/circles.py) and [simplegraphics.py](src/simplegraphics.py). Then run `circles.py`.  
 
 ```{literalinclude} src/circles.py
 ```
