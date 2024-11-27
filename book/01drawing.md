@@ -69,55 +69,6 @@ print("Montoya")
 
 Now use your editor to change the program to print out your name instead of Inigo Montoya's. Run it again to test it.
 
-## Drawing with Pygame
-
-Pygame is a library, or *module*, of Python functions that can be used to draw things on the screen.
-
-Here is a little piece of code to draw two circles. To make it run, you'll need to download two files and put them together in the same directory: [circles.py](src/circles.py) and [simplegraphics.py](src/simplegraphics.py). Then run `circles.py`.  
-
-```{literalinclude} src/circles.py
-```
-
-First let's look at the two function calls to the function named `circle`. The first one, `circle(Color('blue'), 125, 100, 50)` draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.
-
-The `circle` function call needs four parameters. How do I know? I wrote the `circle` function myself. The first parameter, `Color('blue')` is a little bit magical; we'll look at it later. The next three paramters, `125`, `100`, and `50` are integers, or whole numbers.
-
-
-<!--
-```{code-cell}
-:tags: [remove-input]
-exec(open("src/circles_mpl.py").read())
-```
--->
-
-## Using external functions: from...import
-
-The `print` function we used earlier is built in to Python. The `circle` function is not: I wrote it myself, in the `simplegraphics.py` file. In order to use a function from a different file, you can use the `from X import Y` command, where `X` is the name of the file and `Y` is the name of the function. Like this:  
-
-~~~{code-block}
-from pygame import Color
-from simplegraphics import init_graphics, circle, draw_and_wait_for_exit
-~~~ 
-
-This code imports `Color` from the `pygame` module, and imports some other functions from the `simplegraphics.py` file. We leave the `.py` extension off when we use `from X import Y` command.
-
-The `init_graphics` function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open. 
-
-The drawing function `circle` doesn't really draw to the window; `circle` draws to something Pygame calls a screen. So the function `draw_and_wait_for_exit` copies the picture on the screen into the window, and waits for the user to click the button that closes the window.
-
-## Exercise: bullseye
-
-```{image} img/bullseye.png
-:alt: Bullseye output
-:width: 150px
-:align: right
-```
-
-**Learning objective.** Use `circle()` function calls to make a drawing.
-
-Copy the complete code for drawing two circles above into a new Python file. Edit the code to draw an archery bullseye like the one on the right.
-
-*Hint:* My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first. 
 
 ## Writing your own functions
 
@@ -136,7 +87,7 @@ Check the output of the program above. You will see that there isn't any. The co
 
 Function definitions have two parts: a header, and a body. The header gives the name of the function you want to define (as well as some other things we’ll see later). The body is a set of lines of code that tell what the function does. Each line of the body must be indented by pressing the tab key. The indentations tell Python where the function body begins and ends.
 
-The header uses the keyword def (short for define), the name of the function you’d like to define, parentheses after the name of the function, and a colon. So the header for the first function is:
+The header uses the keyword `def` (short for define), the name of the function you’d like to define, parentheses after the name of the function, and a colon. So the header for the first function is:
 
 ```{code-block}
 def say_hello():
@@ -169,6 +120,55 @@ say_hello()
 why_goodbye()
 say_hello()
 ```
+
+## Drawing with Pygame
+
+Pygame is a library, or *module*, of Python functions that can be used to draw things on the screen.
+
+Here is a little piece of code to draw two circles. To run this code, you'll need to download two files and put them together in the same directory: [circles.py](src/circles.py) and [simplegraphics.py](src/simplegraphics.py). Then run `circles.py`.  
+
+```{literalinclude} src/circles.py
+```
+
+Let's look at the two function calls to the function named `circle`. The first one, `circle(Color('blue'), 125, 100, 50)` draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.
+
+The `circle` function call needs four parameters. How do I know? I wrote the `circle` function myself. The first parameter, `Color('blue')` is a little bit magical; we'll look at it later. The next three paramters, `125`, `100`, and `50` are integers, or whole numbers.
+
+
+<!--
+```{code-cell}
+:tags: [remove-input]
+exec(open("src/circles_mpl.py").read())
+```
+-->
+
+## Using external functions: from...import
+
+The `print` function we used earlier is built in to Python. The `circle` function is not: I wrote it myself, in the `simplegraphics.py` file. In order to use a function from a different file, you can use the `from X import Y` command, where `X` is the name of the file and `Y` is the name of the function. Like this:  
+
+~~~{code-block}
+from simplegraphics import circle
+~~~ 
+
+After the import, you can use `circle`. We leave the `.py` extension off when we use `from X import Y` command.
+
+The complete circle-drawing example imported several functions from external modules. The `init_graphics` function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open. 
+
+The drawing function `circle` doesn't really draw to the window; `circle` draws to something Pygame calls a screen. So the function `draw_and_wait_for_exit` copies the picture on the screen into the window, and waits for the user to click the button that closes the window.
+
+## Exercise: bullseye
+
+```{image} img/bullseye.png
+:alt: Bullseye output
+:width: 150px
+:align: right
+```
+
+**Learning objective.** Use `circle()` function calls to make a drawing.
+
+Copy the complete code for drawing two circles above into a new Python file called `bullseye.py`. Edit the code to draw an archery bullseye like the one on the right.
+
+*Hint:* My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first. 
 
 ## Exercise: reading code
 

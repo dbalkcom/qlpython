@@ -360,11 +360,11 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-inigo-montoya">Exercise: Inigo Montoya</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-don-t-know-why-you-say-goodbye">Exercise: I don’t know why you say goodbye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-with-pygame">Drawing with Pygame</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-external-functions-from-import">Using external functions: from…import</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-bullseye">Exercise: bullseye</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-don-t-know-why-you-say-goodbye">Exercise: I don’t know why you say goodbye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-reading-code">Exercise: reading code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-book-cover">Project: book cover</a></li>
 </ul>
@@ -455,51 +455,6 @@ Montoya
 </div>
 <p>Now use your editor to change the program to print out your name instead of Inigo Montoya’s. Run it again to test it.</p>
 </section>
-<section id="drawing-with-pygame">
-<h2>Drawing with Pygame<a class="headerlink" href="#drawing-with-pygame" title="Link to this heading">#</a></h2>
-<p>Pygame is a library, or <em>module</em>, of Python functions that can be used to draw things on the screen.</p>
-<p>Here is a little piece of code to draw two circles. To make it run, you’ll need to download two files and put them together in the same directory: <a class="reference download internal" download="" href="_downloads/3a31125e264491048eba5afb041b70ad/circles.py"><span class="xref download myst">circles.py</span></a> and <a class="reference download internal" download="" href="_downloads/065c65a7e93531f83e302a11711b6b7e/simplegraphics.py"><span class="xref download myst">simplegraphics.py</span></a>. Then run <code class="docutils literal notranslate"><span class="pre">circles.py</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># circles.py</span>
-
-<span class="kn">from</span> <span class="nn">pygame</span> <span class="kn">import</span> <span class="n">Color</span>
-<span class="kn">from</span> <span class="nn">simplegraphics</span> <span class="kn">import</span> <span class="n">init_graphics</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">draw_and_wait_for_exit</span>
- 
-<span class="n">init_graphics</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># create a new game window of size 400 x 400</span>
-
-<span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">),</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
- 
-<span class="c1"># copy the drawing onto the window and wait for exit button to be clicked:</span>
-<span class="n">draw_and_wait_for_exit</span><span class="p">()</span>  
-</pre></div>
-</div>
-<p>First let’s look at the two function calls to the function named <code class="docutils literal notranslate"><span class="pre">circle</span></code>. The first one, <code class="docutils literal notranslate"><span class="pre">circle(Color('blue'),</span> <span class="pre">125,</span> <span class="pre">100,</span> <span class="pre">50)</span></code> draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">circle</span></code> function call needs four parameters. How do I know? I wrote the <code class="docutils literal notranslate"><span class="pre">circle</span></code> function myself. The first parameter, <code class="docutils literal notranslate"><span class="pre">Color('blue')</span></code> is a little bit magical; we’ll look at it later. The next three paramters, <code class="docutils literal notranslate"><span class="pre">125</span></code>, <code class="docutils literal notranslate"><span class="pre">100</span></code>, and <code class="docutils literal notranslate"><span class="pre">50</span></code> are integers, or whole numbers.</p>
-<!--
-```{code-cell}
-:tags: [remove-input]
-exec(open("src/circles_mpl.py").read())
-```
--->
-</section>
-<section id="using-external-functions-from-import">
-<h2>Using external functions: from…import<a class="headerlink" href="#using-external-functions-from-import" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> function we used earlier is built in to Python. The <code class="docutils literal notranslate"><span class="pre">circle</span></code> function is not: I wrote it myself, in the <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code> file. In order to use a function from a different file, you can use the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the name of the file and <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the name of the function. Like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pygame</span> <span class="kn">import</span> <span class="n">Color</span>
-<span class="kn">from</span> <span class="nn">simplegraphics</span> <span class="kn">import</span> <span class="n">init_graphics</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">draw_and_wait_for_exit</span>
-</pre></div>
-</div>
-<p>This code imports <code class="docutils literal notranslate"><span class="pre">Color</span></code> from the <code class="docutils literal notranslate"><span class="pre">pygame</span></code> module, and imports some other functions from the <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code> file. We leave the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension off when we use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">init_graphics</span></code> function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open.</p>
-<p>The drawing function <code class="docutils literal notranslate"><span class="pre">circle</span></code> doesn’t really draw to the window; <code class="docutils literal notranslate"><span class="pre">circle</span></code> draws to something Pygame calls a screen. So the function <code class="docutils literal notranslate"><span class="pre">draw_and_wait_for_exit</span></code> copies the picture on the screen into the window, and waits for the user to click the button that closes the window.</p>
-</section>
-<section id="exercise-bullseye">
-<h2>Exercise: bullseye<a class="headerlink" href="#exercise-bullseye" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="_images/bullseye.png"><img alt="Bullseye output" class="align-right" src="_images/bullseye.png" style="width: 150px;" /></a>
-<p><strong>Learning objective.</strong> Use <code class="docutils literal notranslate"><span class="pre">circle()</span></code> function calls to make a drawing.</p>
-<p>Copy the complete code for drawing two circles above into a new Python file. Edit the code to draw an archery bullseye like the one on the right.</p>
-<p><em>Hint:</em> My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first.</p>
-</section>
 <section id="writing-your-own-functions">
 <h2>Writing your own functions<a class="headerlink" href="#writing-your-own-functions" title="Link to this heading">#</a></h2>
 <p>We can write our own commands in Python. A <em>function</em> in Python is like a little named program within your program. Here’s an example that defines two different functions: <code class="docutils literal notranslate"><span class="pre">say_hello</span></code> and <code class="docutils literal notranslate"><span class="pre">why_goodbye</span></code>.</p>
@@ -517,7 +472,7 @@ exec(open("src/circles_mpl.py").read())
 </div>
 <p>Check the output of the program above. You will see that there isn’t any. The code defined two functions, but it didn’t actually run the functions.</p>
 <p>Function definitions have two parts: a header, and a body. The header gives the name of the function you want to define (as well as some other things we’ll see later). The body is a set of lines of code that tell what the function does. Each line of the body must be indented by pressing the tab key. The indentations tell Python where the function body begins and ends.</p>
-<p>The header uses the keyword def (short for define), the name of the function you’d like to define, parentheses after the name of the function, and a colon. So the header for the first function is:</p>
+<p>The header uses the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> (short for define), the name of the function you’d like to define, parentheses after the name of the function, and a colon. So the header for the first function is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
 </pre></div>
 </div>
@@ -562,6 +517,50 @@ hello.
 </div>
 </div>
 </div>
+</section>
+<section id="drawing-with-pygame">
+<h2>Drawing with Pygame<a class="headerlink" href="#drawing-with-pygame" title="Link to this heading">#</a></h2>
+<p>Pygame is a library, or <em>module</em>, of Python functions that can be used to draw things on the screen.</p>
+<p>Here is a little piece of code to draw two circles. To run this code, you’ll need to download two files and put them together in the same directory: <a class="reference download internal" download="" href="_downloads/3a31125e264491048eba5afb041b70ad/circles.py"><span class="xref download myst">circles.py</span></a> and <a class="reference download internal" download="" href="_downloads/065c65a7e93531f83e302a11711b6b7e/simplegraphics.py"><span class="xref download myst">simplegraphics.py</span></a>. Then run <code class="docutils literal notranslate"><span class="pre">circles.py</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># circles.py</span>
+
+<span class="kn">from</span> <span class="nn">pygame</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">simplegraphics</span> <span class="kn">import</span> <span class="n">init_graphics</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">draw_and_wait_for_exit</span>
+ 
+<span class="n">init_graphics</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># create a new game window of size 400 x 400</span>
+
+<span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">),</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+ 
+<span class="c1"># copy the drawing onto the window and wait for exit button to be clicked:</span>
+<span class="n">draw_and_wait_for_exit</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>Let’s look at the two function calls to the function named <code class="docutils literal notranslate"><span class="pre">circle</span></code>. The first one, <code class="docutils literal notranslate"><span class="pre">circle(Color('blue'),</span> <span class="pre">125,</span> <span class="pre">100,</span> <span class="pre">50)</span></code> draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">circle</span></code> function call needs four parameters. How do I know? I wrote the <code class="docutils literal notranslate"><span class="pre">circle</span></code> function myself. The first parameter, <code class="docutils literal notranslate"><span class="pre">Color('blue')</span></code> is a little bit magical; we’ll look at it later. The next three paramters, <code class="docutils literal notranslate"><span class="pre">125</span></code>, <code class="docutils literal notranslate"><span class="pre">100</span></code>, and <code class="docutils literal notranslate"><span class="pre">50</span></code> are integers, or whole numbers.</p>
+<!--
+```{code-cell}
+:tags: [remove-input]
+exec(open("src/circles_mpl.py").read())
+```
+-->
+</section>
+<section id="using-external-functions-from-import">
+<h2>Using external functions: from…import<a class="headerlink" href="#using-external-functions-from-import" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> function we used earlier is built in to Python. The <code class="docutils literal notranslate"><span class="pre">circle</span></code> function is not: I wrote it myself, in the <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code> file. In order to use a function from a different file, you can use the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the name of the file and <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the name of the function. Like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simplegraphics</span> <span class="kn">import</span> <span class="n">circle</span>
+</pre></div>
+</div>
+<p>After the import, you can use <code class="docutils literal notranslate"><span class="pre">circle</span></code>. We leave the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension off when we use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command.</p>
+<p>The complete circle-drawing example imported several functions from external modules. The <code class="docutils literal notranslate"><span class="pre">init_graphics</span></code> function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open.</p>
+<p>The drawing function <code class="docutils literal notranslate"><span class="pre">circle</span></code> doesn’t really draw to the window; <code class="docutils literal notranslate"><span class="pre">circle</span></code> draws to something Pygame calls a screen. So the function <code class="docutils literal notranslate"><span class="pre">draw_and_wait_for_exit</span></code> copies the picture on the screen into the window, and waits for the user to click the button that closes the window.</p>
+</section>
+<section id="exercise-bullseye">
+<h2>Exercise: bullseye<a class="headerlink" href="#exercise-bullseye" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="_images/bullseye.png"><img alt="Bullseye output" class="align-right" src="_images/bullseye.png" style="width: 150px;" /></a>
+<p><strong>Learning objective.</strong> Use <code class="docutils literal notranslate"><span class="pre">circle()</span></code> function calls to make a drawing.</p>
+<p>Copy the complete code for drawing two circles above into a new Python file called <code class="docutils literal notranslate"><span class="pre">bullseye.py</span></code>. Edit the code to draw an archery bullseye like the one on the right.</p>
+<p><em>Hint:</em> My solution drew four circles centered at the center of the 400x400 pixel screen: one yellow, one red, one blue, and one black. Each circle had a different radius. The order that the circles is drawn matters, since circles drawn later cover up circles drawn first.</p>
 </section>
 <section id="exercise-reading-code">
 <h2>Exercise: reading code<a class="headerlink" href="#exercise-reading-code" title="Link to this heading">#</a></h2>
@@ -660,11 +659,11 @@ hello.
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-inigo-montoya">Exercise: Inigo Montoya</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-don-t-know-why-you-say-goodbye">Exercise: I don’t know why you say goodbye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-with-pygame">Drawing with Pygame</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-external-functions-from-import">Using external functions: from…import</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-bullseye">Exercise: bullseye</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-don-t-know-why-you-say-goodbye">Exercise: I don’t know why you say goodbye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-reading-code">Exercise: reading code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-book-cover">Project: book cover</a></li>
 </ul>
