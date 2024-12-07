@@ -53,7 +53,7 @@ The parameter `"Hello"` is a *string*, or sequence of letters and numbers. Notic
 
 **Learning objective:** Run and edit Python code.
 
-Copy the next program into your Python editor. Run the code in the editor to see the output.
+Copy the next program into a new file called `myname.py` in your Python editor and save the file. Run the code in the editor to see the output.
 
 ```{code-cell}
 :tags: [hide-output]
@@ -104,7 +104,7 @@ The body of the first function is
 
 **Learning objective**: Call functions that have been defined.
 
-Copy the code for the function definitions for `say_hello` and `why_goodbye` into a new Python file in your editor. Add function calls to those function after the definitions so that program prints the following when run. (The answer is hidden under "show code cell source"; no peeking until you've tried it yourself.)
+Copy the code for the function definitions for `say_hello` and `why_goodbye` into a new Python file called `hello.py` in your editor. Add function calls to those function after the definitions so that program prints the following when run. (The answer is hidden under "show code cell source"; no peeking until you've tried it yourself.)
 
 
 ```{code-cell}
@@ -125,7 +125,17 @@ say_hello()
 
 Pygame is a library, or *module*, of Python functions that can be used to draw things on the screen.
 
-Here is a little piece of code to draw two circles. To run this code, you'll need to download two files and put them together in the same directory: [circles.py](src/circles.py) and [simplegraphics.py](src/simplegraphics.py). Then run `circles.py`.  
+Here is some code I wrote to show you some things pygame to do. You won't understand this code yet, but that's ok. Create a new Python file called `easydraw.py`, and copy paste this code into that file. Save it and run it. 
+
+```{literalinclude} src/easydraw.py
+```
+
+##  Drawing circles
+
+Ok, now that you have seen an example, let's look at some simpler code and see how it works.
+
+In the same directory as `easydraw.py`, create a new file called `circles.py`. 
+Copy and paste the next code into `circles.py. Save it and run it. 
 
 ```{literalinclude} src/circles.py
 ```
@@ -144,17 +154,19 @@ exec(open("src/circles_mpl.py").read())
 
 ## Using external functions: from...import
 
-The `print` function we used earlier is built in to Python. The `circle` function is not: I wrote it myself, in the `simplegraphics.py` file. In order to use a function from a different file, you can use the `from X import Y` command, where `X` is the name of the file and `Y` is the name of the function. Like this:  
+The `print` function we used earlier is built in to Python. The `circle` function is not: I wrote it myself, in the `easydraw.py` file. In order to use a function from a different file, you can use the `from X import Y` command, where `X` is the name of the file and `Y` is the name of the function. Like this:  
 
 ~~~{code-block}
-from simplegraphics import circle
+from easydraw import circle
 ~~~ 
 
 After the import, you can use `circle`. We leave the `.py` extension off when we use `from X import Y` command.
 
-The complete circle-drawing example imported several functions from external modules. The `init_graphics` function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open. 
+The complete circle-drawing example imported several functions from external modules. The `window` function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open. 
 
-The drawing function `circle` doesn't really draw to the window; `circle` draws to something Pygame calls a screen. So the function `draw_and_wait_for_exit` copies the picture on the screen into the window, and waits for the user to click the button that closes the window.
+The drawing function `circle` doesn't really draw to the window; `circle` draws to something Pygame calls a screen. So the function `draw()` copies the picture on the screen into the window.
+
+Finally, we need to wait for the user to click the button that closes the window. We do that with a call to `wait_for_exit()`, which should be the last thing the program does.
 
 ## Exercise: bullseye
 
@@ -180,12 +192,12 @@ Copy the complete code for drawing two circles above into a new Python file call
 :align: right
 ```
 
-The picture on the right shows some example shapes that `simplegraphics.py` can draw. Here is the code that drew the shapes:
+The picture on the right shows some example shapes that `easydraw.py` can draw. Here is the code that drew the shapes:
 
-```{literalinclude} src/simplegraphics_examples.py
+```{literalinclude} src/easydraw_examples.py
 ```
 
-Open up `simplegraphics.py` and read the body of the `test_draw` function and look at the function headers for the functions `rectangle`, `ellipse`, `triangle` and `line`. Try to figure out what you might need to type to use these functions. Since this is a reading exercise, you don't have to type anything.
+Open up `easydraw.py` and read the body of the `test_draw` function and look at the function headers for the functions `rectangle`, `ellipse`, `triangle` and `line`. Try to figure out what you might need to type to use these functions. Since this is a reading exercise, you don't have to type anything.
 
 ## Project: book cover
 
@@ -194,15 +206,17 @@ Open up `simplegraphics.py` and read the body of the `test_draw` function and lo
 Childrens board books often have colorful, simple covers. See the covers for
 [Goodnight Moon](https://upload.wikimedia.org/wikipedia/en/5/51/Goodnightmoon.jpg) and [The Very Hungry Caterpillar](https://upload.wikimedia.org/wikipedia/en/b/b5/HungryCaterpillar.JPG).
 
-Create a new file with the name `bookcover.py` in the same directory as `simplegraphics.py`. Your job is to write complete code in `bookcover.py` to draw a picture, using function calls to `circle`, `rectangle`, `triangle`, and `ellipse`. You can create your own artwork from scratch, or use one of the book covers for inspiration.
+Create a new file with the name `bookcover.py` in the same directory as `easydraw.py`. Your job is to write complete code in `bookcover.py` to draw a picture, using function calls to `circle`, `rectangle`, `triangle`, and `ellipse`. You can create your own artwork from scratch, or use one of the book covers for inspiration.
 
 Some other ideas are: light rays passing through a prism; a snowman in a cozy scene with evergreen trees; a child holding a bunch of balloons.
 
 **Hints:** Simplify the problem. Set a simple objective, like drawing a single circle on the screen.
 
-1) Start with the imports. You'll need functions like `init_graphics` and `draw_and_wait_for_exit`, as well as at least one of the shapes, like `circle`, so import those things. 
+1) Start with the imports. You'll need functions like `window` and `draw` and `wait_for_exit`, as well as at least one of the shapes, like `circle`, so import those things. 
 
-2) Then use `init_graphics`, a call to `circle`, and `draw_and_wait_for_exit()`. Run the code. If it works, add more drawing commands, importing the different types of shapes at the top of the code as needed.
+2) Then use `window`, a call to `circle`, a call to `draw()`, and a call to `wait_for_exit()`. 
 
-3) Run the code frequently. If at any point, the code doesn't run, compare it carefully to the `circles.py` code we looked at earlier.
+3) Run the code. If it works, add more drawing commands, importing the different types of shapes at the top of the code as needed.
+
+4) Run the code frequently. If at any point, the code doesn't run, compare it carefully to the `circles.py` code we looked at earlier.
  

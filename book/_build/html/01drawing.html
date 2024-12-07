@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -363,6 +363,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-don-t-know-why-you-say-goodbye">Exercise: I don’t know why you say goodbye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-with-pygame">Drawing with Pygame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-circles">Drawing circles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-external-functions-from-import">Using external functions: from…import</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-bullseye">Exercise: bullseye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-reading-code">Exercise: reading code</a></li>
@@ -422,7 +423,7 @@ Hello
 <section id="exercise-inigo-montoya">
 <h2>Exercise: Inigo Montoya<a class="headerlink" href="#exercise-inigo-montoya" title="Link to this heading">#</a></h2>
 <p><strong>Learning objective:</strong> Run and edit Python code.</p>
-<p>Copy the next program into your Python editor. Run the code in the editor to see the output.</p>
+<p>Copy the next program into a new file called <code class="docutils literal notranslate"><span class="pre">myname.py</span></code> in your Python editor and save the file. Run the code in the editor to see the output.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A program to output a short greeting</span>
@@ -485,7 +486,7 @@ Montoya
 <section id="exercise-i-don-t-know-why-you-say-goodbye">
 <h2>Exercise: I don’t know why you say goodbye<a class="headerlink" href="#exercise-i-don-t-know-why-you-say-goodbye" title="Link to this heading">#</a></h2>
 <p><strong>Learning objective</strong>: Call functions that have been defined.</p>
-<p>Copy the code for the function definitions for <code class="docutils literal notranslate"><span class="pre">say_hello</span></code> and <code class="docutils literal notranslate"><span class="pre">why_goodbye</span></code> into a new Python file in your editor. Add function calls to those function after the definitions so that program prints the following when run. (The answer is hidden under “show code cell source”; no peeking until you’ve tried it yourself.)</p>
+<p>Copy the code for the function definitions for <code class="docutils literal notranslate"><span class="pre">say_hello</span></code> and <code class="docutils literal notranslate"><span class="pre">why_goodbye</span></code> into a new Python file called <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> in your editor. Add function calls to those function after the definitions so that program prints the following when run. (The answer is hidden under “show code cell source”; no peeking until you’ve tried it yourself.)</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -521,19 +522,87 @@ hello.
 <section id="drawing-with-pygame">
 <h2>Drawing with Pygame<a class="headerlink" href="#drawing-with-pygame" title="Link to this heading">#</a></h2>
 <p>Pygame is a library, or <em>module</em>, of Python functions that can be used to draw things on the screen.</p>
-<p>Here is a little piece of code to draw two circles. To run this code, you’ll need to download two files and put them together in the same directory: <a class="reference download internal" download="" href="_downloads/3a31125e264491048eba5afb041b70ad/circles.py"><span class="xref download myst">circles.py</span></a> and <a class="reference download internal" download="" href="_downloads/065c65a7e93531f83e302a11711b6b7e/simplegraphics.py"><span class="xref download myst">simplegraphics.py</span></a>. Then run <code class="docutils literal notranslate"><span class="pre">circles.py</span></code>.</p>
+<p>Here is some code I wrote to show you some things pygame to do. You won’t understand this code yet, but that’s ok. Create a new Python file called <code class="docutils literal notranslate"><span class="pre">easydraw.py</span></code>, and copy paste this code into that file. Save it and run it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># easydraw.py, by djb</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">gamescreen</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">window</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">gamescreen</span>
+    <span class="n">gamescreen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+    <span class="n">gamescreen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">wait_for_exit</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span> 
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+                <span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+  
+<span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+     <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">gamescreen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="p">)</span>  
+
+<span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">gamescreen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="n">width</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rectangle</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">gamescreen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">ellipse</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">gamescreen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">triangle</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">):</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(</span><span class="n">gamescreen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="p">[(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">)])</span>
+
+
+<span class="k">def</span> <span class="nf">test_draw</span><span class="p">():</span>
+    <span class="c1"># tests the drawing code</span>
+
+    <span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>                 <span class="c1"># Circle</span>
+    <span class="n">line</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>         <span class="c1"># Line</span>
+    <span class="n">rectangle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">),</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>         <span class="c1"># Rectangle</span>
+    <span class="n">ellipse</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">),</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>        <span class="c1"># Ellipse</span>
+    <span class="n">triangle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;purple&quot;</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">350</span><span class="p">)</span>  <span class="c1"># Triangle</span>
+
+<span class="n">gamescreen</span> <span class="o">=</span> <span class="kc">None</span>
+ 
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">window</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+    <span class="n">test_draw</span><span class="p">()</span>
+    <span class="n">draw</span><span class="p">()</span>
+    <span class="n">wait_for_exit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="drawing-circles">
+<h2>Drawing circles<a class="headerlink" href="#drawing-circles" title="Link to this heading">#</a></h2>
+<p>Ok, now that you have seen an example, let’s look at some simpler code and see how it works.</p>
+<p>In the same directory as <code class="docutils literal notranslate"><span class="pre">easydraw.py</span></code>, create a new file called <code class="docutils literal notranslate"><span class="pre">circles.py</span></code>.
+Copy and paste the next code into `<a class="reference external" href="http://circles.py">circles.py</a>. Save it and run it.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># circles.py</span>
 
 <span class="kn">from</span> <span class="nn">pygame</span> <span class="kn">import</span> <span class="n">Color</span>
-<span class="kn">from</span> <span class="nn">simplegraphics</span> <span class="kn">import</span> <span class="n">init_graphics</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">draw_and_wait_for_exit</span>
+<span class="kn">from</span> <span class="nn">easydraw</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">wait_for_exit</span>
  
-<span class="n">init_graphics</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># create a new game window of size 400 x 400</span>
+<span class="n">window</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># create a new game window of size 400 x 400</span>
 
 <span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">),</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
  
-<span class="c1"># copy the drawing onto the window and wait for exit button to be clicked:</span>
-<span class="n">draw_and_wait_for_exit</span><span class="p">()</span>  
+<span class="c1"># copy the drawing onto the window </span>
+<span class="n">draw</span><span class="p">()</span>
+
+<span class="c1"># wait for the exit button to be clicked</span>
+<span class="n">wait_for_exit</span><span class="p">()</span>  
 </pre></div>
 </div>
 <p>Let’s look at the two function calls to the function named <code class="docutils literal notranslate"><span class="pre">circle</span></code>. The first one, <code class="docutils literal notranslate"><span class="pre">circle(Color('blue'),</span> <span class="pre">125,</span> <span class="pre">100,</span> <span class="pre">50)</span></code> draws a blue circle centered at a location 125 pixels across from the left of the window, and 100 pixels down from the top of the window. The circle has a radius of 50 pixels.</p>
@@ -547,13 +616,14 @@ exec(open("src/circles_mpl.py").read())
 </section>
 <section id="using-external-functions-from-import">
 <h2>Using external functions: from…import<a class="headerlink" href="#using-external-functions-from-import" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> function we used earlier is built in to Python. The <code class="docutils literal notranslate"><span class="pre">circle</span></code> function is not: I wrote it myself, in the <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code> file. In order to use a function from a different file, you can use the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the name of the file and <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the name of the function. Like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simplegraphics</span> <span class="kn">import</span> <span class="n">circle</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> function we used earlier is built in to Python. The <code class="docutils literal notranslate"><span class="pre">circle</span></code> function is not: I wrote it myself, in the <code class="docutils literal notranslate"><span class="pre">easydraw.py</span></code> file. In order to use a function from a different file, you can use the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the name of the file and <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the name of the function. Like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">easydraw</span> <span class="kn">import</span> <span class="n">circle</span>
 </pre></div>
 </div>
 <p>After the import, you can use <code class="docutils literal notranslate"><span class="pre">circle</span></code>. We leave the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension off when we use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code> command.</p>
-<p>The complete circle-drawing example imported several functions from external modules. The <code class="docutils literal notranslate"><span class="pre">init_graphics</span></code> function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open.</p>
-<p>The drawing function <code class="docutils literal notranslate"><span class="pre">circle</span></code> doesn’t really draw to the window; <code class="docutils literal notranslate"><span class="pre">circle</span></code> draws to something Pygame calls a screen. So the function <code class="docutils literal notranslate"><span class="pre">draw_and_wait_for_exit</span></code> copies the picture on the screen into the window, and waits for the user to click the button that closes the window.</p>
+<p>The complete circle-drawing example imported several functions from external modules. The <code class="docutils literal notranslate"><span class="pre">window</span></code> function opens up a window on the screen for drawing. It takes two parameters: the width and height of the window you want to open.</p>
+<p>The drawing function <code class="docutils literal notranslate"><span class="pre">circle</span></code> doesn’t really draw to the window; <code class="docutils literal notranslate"><span class="pre">circle</span></code> draws to something Pygame calls a screen. So the function <code class="docutils literal notranslate"><span class="pre">draw()</span></code> copies the picture on the screen into the window.</p>
+<p>Finally, we need to wait for the user to click the button that closes the window. We do that with a call to <code class="docutils literal notranslate"><span class="pre">wait_for_exit()</span></code>, which should be the last thing the program does.</p>
 </section>
 <section id="exercise-bullseye">
 <h2>Exercise: bullseye<a class="headerlink" href="#exercise-bullseye" title="Link to this heading">#</a></h2>
@@ -566,27 +636,37 @@ exec(open("src/circles_mpl.py").read())
 <h2>Exercise: reading code<a class="headerlink" href="#exercise-reading-code" title="Link to this heading">#</a></h2>
 <p><strong>Learning objective.</strong> Read through some code to figure out how to use functions from that code.</p>
 <a class="reference internal image-reference" href="_images/simple_shapes.png"><img alt="Simple shapes" class="align-right" src="_images/simple_shapes.png" style="width: 150px;" /></a>
-<p>The picture on the right shows some example shapes that <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code> can draw. Here is the code that drew the shapes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>                 <span class="c1"># Circle</span>
+<p>The picture on the right shows some example shapes that <code class="docutils literal notranslate"><span class="pre">easydraw.py</span></code> can draw. Here is the code that drew the shapes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pygame</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">easydraw</span> <span class="kn">import</span> <span class="n">window</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">rectangle</span><span class="p">,</span> <span class="n">ellipse</span><span class="p">,</span> <span class="n">triangle</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">wait_for_exit</span>
+
+<span class="c1"># create a new window for drawing on the screen</span>
+<span class="n">window</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">circle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>                 <span class="c1"># Circle</span>
 <span class="n">line</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>         <span class="c1"># Line</span>
 <span class="n">rectangle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">),</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>         <span class="c1"># Rectangle</span>
 <span class="n">ellipse</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">),</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>        <span class="c1"># Ellipse</span>
 <span class="n">triangle</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;purple&quot;</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">350</span><span class="p">)</span>  <span class="c1"># Triangle</span>
+
+<span class="n">draw</span><span class="p">()</span>  <span class="c1"># copy the drawing to the window</span>
+<span class="n">wait_for_exit</span><span class="p">()</span> <span class="c1"># wait for window exit button</span>
 </pre></div>
 </div>
-<p>Open up <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code> and read the body of the <code class="docutils literal notranslate"><span class="pre">test_draw</span></code> function and look at the function headers for the functions <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>, <code class="docutils literal notranslate"><span class="pre">ellipse</span></code>, <code class="docutils literal notranslate"><span class="pre">triangle</span></code> and <code class="docutils literal notranslate"><span class="pre">line</span></code>. Try to figure out what you might need to type to use these functions. Since this is a reading exercise, you don’t have to type anything.</p>
+<p>Open up <code class="docutils literal notranslate"><span class="pre">easydraw.py</span></code> and read the body of the <code class="docutils literal notranslate"><span class="pre">test_draw</span></code> function and look at the function headers for the functions <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>, <code class="docutils literal notranslate"><span class="pre">ellipse</span></code>, <code class="docutils literal notranslate"><span class="pre">triangle</span></code> and <code class="docutils literal notranslate"><span class="pre">line</span></code>. Try to figure out what you might need to type to use these functions. Since this is a reading exercise, you don’t have to type anything.</p>
 </section>
 <section id="project-book-cover">
 <h2>Project: book cover<a class="headerlink" href="#project-book-cover" title="Link to this heading">#</a></h2>
 <p><strong>Learning objective.</strong> Use a variety of drawing commands to draw an interesting picture.</p>
 <p>Childrens board books often have colorful, simple covers. See the covers for
 <a class="reference external" href="https://upload.wikimedia.org/wikipedia/en/5/51/Goodnightmoon.jpg">Goodnight Moon</a> and <a class="reference external" href="https://upload.wikimedia.org/wikipedia/en/b/b5/HungryCaterpillar.JPG">The Very Hungry Caterpillar</a>.</p>
-<p>Create a new file with the name <code class="docutils literal notranslate"><span class="pre">bookcover.py</span></code> in the same directory as <code class="docutils literal notranslate"><span class="pre">simplegraphics.py</span></code>. Your job is to write complete code in <code class="docutils literal notranslate"><span class="pre">bookcover.py</span></code> to draw a picture, using function calls to <code class="docutils literal notranslate"><span class="pre">circle</span></code>, <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>, <code class="docutils literal notranslate"><span class="pre">triangle</span></code>, and <code class="docutils literal notranslate"><span class="pre">ellipse</span></code>. You can create your own artwork from scratch, or use one of the book covers for inspiration.</p>
+<p>Create a new file with the name <code class="docutils literal notranslate"><span class="pre">bookcover.py</span></code> in the same directory as <code class="docutils literal notranslate"><span class="pre">easydraw.py</span></code>. Your job is to write complete code in <code class="docutils literal notranslate"><span class="pre">bookcover.py</span></code> to draw a picture, using function calls to <code class="docutils literal notranslate"><span class="pre">circle</span></code>, <code class="docutils literal notranslate"><span class="pre">rectangle</span></code>, <code class="docutils literal notranslate"><span class="pre">triangle</span></code>, and <code class="docutils literal notranslate"><span class="pre">ellipse</span></code>. You can create your own artwork from scratch, or use one of the book covers for inspiration.</p>
 <p>Some other ideas are: light rays passing through a prism; a snowman in a cozy scene with evergreen trees; a child holding a bunch of balloons.</p>
 <p><strong>Hints:</strong> Simplify the problem. Set a simple objective, like drawing a single circle on the screen.</p>
 <ol class="arabic simple">
-<li><p>Start with the imports. You’ll need functions like <code class="docutils literal notranslate"><span class="pre">init_graphics</span></code> and <code class="docutils literal notranslate"><span class="pre">draw_and_wait_for_exit</span></code>, as well as at least one of the shapes, like <code class="docutils literal notranslate"><span class="pre">circle</span></code>, so import those things.</p></li>
-<li><p>Then use <code class="docutils literal notranslate"><span class="pre">init_graphics</span></code>, a call to <code class="docutils literal notranslate"><span class="pre">circle</span></code>, and <code class="docutils literal notranslate"><span class="pre">draw_and_wait_for_exit()</span></code>. Run the code. If it works, add more drawing commands, importing the different types of shapes at the top of the code as needed.</p></li>
+<li><p>Start with the imports. You’ll need functions like <code class="docutils literal notranslate"><span class="pre">window</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code> and <code class="docutils literal notranslate"><span class="pre">wait_for_exit</span></code>, as well as at least one of the shapes, like <code class="docutils literal notranslate"><span class="pre">circle</span></code>, so import those things.</p></li>
+<li><p>Then use <code class="docutils literal notranslate"><span class="pre">window</span></code>, a call to <code class="docutils literal notranslate"><span class="pre">circle</span></code>, a call to <code class="docutils literal notranslate"><span class="pre">draw()</span></code>, and a call to <code class="docutils literal notranslate"><span class="pre">wait_for_exit()</span></code>.</p></li>
+<li><p>Run the code. If it works, add more drawing commands, importing the different types of shapes at the top of the code as needed.</p></li>
 <li><p>Run the code frequently. If at any point, the code doesn’t run, compare it carefully to the <code class="docutils literal notranslate"><span class="pre">circles.py</span></code> code we looked at earlier.</p></li>
 </ol>
 </section>
@@ -662,6 +742,7 @@ exec(open("src/circles_mpl.py").read())
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-don-t-know-why-you-say-goodbye">Exercise: I don’t know why you say goodbye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-with-pygame">Drawing with Pygame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-circles">Drawing circles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-external-functions-from-import">Using external functions: from…import</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-bullseye">Exercise: bullseye</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-reading-code">Exercise: reading code</a></li>

@@ -1,4 +1,4 @@
-# simplegraphics.py, by djb
+# easydraw.py, by djb
 
 import pygame
 from pygame import Color
@@ -6,14 +6,15 @@ import sys
 
 gamescreen = None
 
-def init_graphics(width, height):
+def window(width, height):
     global gamescreen
     gamescreen = pygame.display.set_mode((width, height))
     gamescreen.fill(Color("white"))
 
-
-def draw_and_wait_for_exit():
+def draw():
     pygame.display.flip()
+
+def wait_for_exit():
     while True:
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT:
@@ -50,6 +51,7 @@ gamescreen = None
  
 if __name__ == "__main__":
 
-    init_graphics(400, 400)
+    window(400, 400)
     test_draw()
-    draw_and_wait_for_exit()
+    draw()
+    wait_for_exit()
